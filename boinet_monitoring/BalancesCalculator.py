@@ -1,6 +1,7 @@
 from terminaltables import AsciiTable
 
 from boinet_monitoring.BalanceCalculatorBySubjectType import BalanceCalculatorBySubjectType
+from boinet_monitoring.BankAccountCalculator import BankAccountCalculator
 
 
 class BalancesCalculator:
@@ -8,8 +9,8 @@ class BalancesCalculator:
     def __init__(self):
         self.financial_events_processors = [BalanceCalculatorBySubjectType(subject_type)
                                             for subject_type
-                                            in self.SUBJECT_TYPES]
-        header_row = ["Tick"] + self.SUBJECT_TYPES + ["Total balance"]
+                                            in self.SUBJECT_TYPES] + [BankAccountCalculator()]
+        header_row = ["Tick"] + self.SUBJECT_TYPES + ["Bank", "Total balance"]
         _print_table(header_row)
 
     def process_event(self, event):

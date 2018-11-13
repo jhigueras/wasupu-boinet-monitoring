@@ -33,7 +33,7 @@ class BalanceCalculatorBySubjectType:
         return "user" in event and event["user"] in self.users or "iban" in event and event["iban"] in self.accounts
 
     def _is_contract_account_event(self, event):
-        return event["eventType"] == "contractAccount" and event["user"] in self.users
+        return event["eventType"] == "contractCurrentAccount" and event["user"] in self.users
 
     def _register_contract(self, event):
         self.accounts[event["iban"]] = 0

@@ -4,3 +4,11 @@ Wasupu boinet monitoring tool
 ============================
 
 This tool is used to monitor what's happening in a running boinet
+
+Usage
+-----
+
+.. code:: console
+
+    $ pip install .
+    $ docker logs -f boinet | python -m boinet_monitoring balances
