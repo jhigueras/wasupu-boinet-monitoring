@@ -4,3 +4,8 @@ python:
 install:
 - pip install .
 script: pytest
+deploy:
+    provider: pypi
+    user: "jhigueras"
+    password:
+        secure: "FHHHp47HNBis5EEkuNXZH/fV6RjFXRf63aduSPs679pIqQkiaUTeJAKzsvxKbNDa4e/CI5BS6lRFAwwq+ltWFltogyYayqxp9QDYSGMHEjxF/eaiwQajdHPNbwi5VlLOZ6ops526HB1CMn759nKjeKr667PqIFvceRA0cI+m84G+pUGTFP/Qq7ZSogMQp9atBz0EWGEYTlEhkddaAvr4WIWEael0RwSKJu70muKQg4uYhJrJS6mR1d1pOAivwIrTgg3SOv1hn5Zm2DOE6MxBziuOF8RozUZKy3xN+82IhGnJDhk4lgCthiFvq+nvEjOj+56GakxUBYmP+boFJXk9tTPYWcbsDUN+C7AKM8emWHLIw9/Fs9RQnsQgr3hifVDT6AkVARhlWs8zUlRJpwrGKBFdw9qKdMQk497Ufuq84b3p1nxKK0453naaDHlUIjMNx37Yk6sEY+lrP2M4wRTxdTN9cctPkIqHSlDRjykKMT/jfQ2CU2o/YjyqD6Yqzfsg1MhfOBU6HlRpseJSEvQdPzx18Uio1DcLrplJGZqlZMoca0KPtSYXlapsG1LQuYDBbT5xh7yWIG/4neGS+iSYtxCcu54/nCdpMMVdiZTttPH5dJXiVyvsbsVNXnwxIUof2DsIMpuMrfMYUAv2bhTdqx/+UCjx+Wesr0WnCf8t9Zw="
