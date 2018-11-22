@@ -8,13 +8,14 @@ class Plotter:
         self.ticks_and_balances = []
         self.tick = 0
 
-    def on_data(self, tick, balance):
-        self.ticks_and_balances.append((tick, balance))
+    def on_data(self, tick, balances):
+        self.ticks_and_balances.append((tick, balances))
 
     def show(self):
         # Create figure for plotting
         fig = plt.figure()
-        ax = fig.add_subplot(1, 1, 1)
+
+        axes = fig.add_subplot(1, 1, 1)
         xs = []
         ys = []
 
@@ -25,22 +26,23 @@ class Plotter:
 
             # Add x and y to lists
             xs.extend([tick for tick, _ in new_data])
-            ys.extend([balance for _, balance in new_data])
+            ys.extend([balances for _, balances in new_data])
 
             # Limit x and y lists to 20 items
-            xs = xs[-20:]
-            ys = ys[-20:]
+            xs = xs[-600:]
+            ys = ys[-600:]
 
             # Draw x and y lists
-            ax.clear()
-            ax.plot(xs, ys)
+            axes.clear()
+            axes.plot(xs, ys)
 
             # Format plot
             plt.xticks(rotation=45, ha='right')
             plt.subplots_adjust(bottom=0.30)
-            plt.title('TMP102 Temperature over Time')
-            plt.ylabel('Temperature (deg C)')
+            plt.title('Overall balance')
+            plt.ylabel('Balance (EUR)')
+            plt.xlabel('Ticks')
 
         # Set up plot to call animate() function periodically
-        ani = animation.FuncAnimation(fig, animate, fargs=(xs, ys), interval=1000)
+        ani = animation.FuncAnimation(fig, animate, fargs=(xs, ys), interval=200)
         plt.show()

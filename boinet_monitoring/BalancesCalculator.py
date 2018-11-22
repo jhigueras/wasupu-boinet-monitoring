@@ -1,6 +1,5 @@
-from boinet_monitoring.BalanceCalculatorBySubjectType import BalanceCalculatorBySubjectType
-from boinet_monitoring.BankAccountCalculator import BankAccountCalculator
 from boinet_monitoring import terminal_printer
+from boinet_monitoring.BalanceCalculatorBySubjectType import BalanceCalculatorBySubjectType
 
 
 class BalancesCalculator:
@@ -9,8 +8,8 @@ class BalancesCalculator:
         self.tick = 0
         self.financial_events_processors = [BalanceCalculatorBySubjectType(subject_type)
                                             for subject_type
-                                            in self.SUBJECT_TYPES] + [BankAccountCalculator()]
-        header_row = ["Tick"] + self.SUBJECT_TYPES + ["Bank", "Total balance"]
+                                            in self.SUBJECT_TYPES]
+        header_row = ["Tick"] + self.SUBJECT_TYPES + ["Total balance"]
         terminal_printer.print_summary(header_row)
 
     def accumulate(self, event):
@@ -25,9 +24,9 @@ class BalancesCalculator:
         return [self.tick] + self._balances_by_subject_type() + [self._total_balance()]
 
     def _total_balance(self):
-        return sum([processor.get_summary() for processor in self.financial_events_processors])
+        return sum([processor.get_balance() for processor in self.financial_events_processors])
 
     def _balances_by_subject_type(self):
-        return [processor.get_summary() for processor in self.financial_events_processors]
+        return [processor.get_balance() for processor in self.financial_events_processors]
 
-    SUBJECT_TYPES = ["PERSON", "COMPANY"]
+    SUBJECT_TYPES = ["peopleBalance", "companiesBalance", "treasuryAccount"]

@@ -49,6 +49,6 @@ def update_plotter(plotter):
             .map(calculator.accumulate) \
             .filter(lambda event_and_summary: "eventType" not in event_and_summary[0]) \
             .map(lambda event_and_summary: event_and_summary[1]) \
-            .subscribe(lambda summary: plotter.on_data(summary[0], summary[1]))
+            .subscribe(lambda summary: plotter.on_data(summary[0], summary[1:4]))
 
     return read_events
