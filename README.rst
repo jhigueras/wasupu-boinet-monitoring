@@ -11,4 +11,10 @@ Usage
 .. code:: console
 
     $ pip install .
-    $ docker logs -f boinet | python -m boinet_monitoring balances
+    $ docker logs -f boinet | python -m boinet_monitoring balances-table
+
+
+.. code:: console
+
+    $ pip install .
+    $ docker logs -f boinet | python -m boinet_monitoring balances-graph

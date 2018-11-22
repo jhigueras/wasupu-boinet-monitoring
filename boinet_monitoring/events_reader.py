@@ -1,11 +1,14 @@
 import json
 import sys
 
-from boinet_monitoring.BalancesCalculator import BalancesCalculator
+from rx import Observable
 
 
-def calculate_balances(_args):
-    calculator = BalancesCalculator()
+def read_events():
+    return Observable.create(read_from_stdin)
+
+
+def read_from_stdin(observer):
     for line in sys.stdin:
         data = json.loads(line)
-        calculator.process_event(data)
+        observer.on_next(data)

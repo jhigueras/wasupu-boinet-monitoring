@@ -6,6 +6,8 @@ class BalanceCalculatorBySubjectType:
         self.accounts = {}
 
     def process(self, event):
+        if "eventType" not in event:
+            return
         if self._is_user_registration_event(event):
             self._register_user(event)
 
@@ -19,9 +21,6 @@ class BalanceCalculatorBySubjectType:
 
     def get_summary(self):
         return sum([value for key, value in self.accounts.items()])
-
-    def reset(self):
-        pass
 
     def _is_user_registration_event(self, event):
         return event["eventType"] == "registerUser" and event["type"] == self.subject_type
